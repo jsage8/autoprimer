@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Auto Primer</title>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/auto_primer.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
+</head>
+
+<body id="main">
+
+<div id="all_content">
+	<section id="search_box" class="standard_section">
+		<h1>Auto Primer</h1>
+		<form name="gene_search" id="gene_search" action="">
+			<input name="search_term" id="search_term" type="search" value="" autofocus="autofocus" placeholder="Enter a search term" autocomplete="off"/>
+			<button name="submit" id="submit" type="submit">search</button>
+		</form>
+	</section>
+
+    <section id="results" class="standard_section">
+		<h2>Search Results</h2>
+        <p>
+            <span id="match_count">0</span> match(es) found.
+        </p>
+        <form name="refine_search" id="refine_search" action="">
+			<table>
+				<thead>
+					<tr>
+						<td>Select</td>
+						<td>Locus tag</td>
+						<td>Product</td>
+					</tr>
+				</thead>
+				<tbody id="search_tbody">
+					<!-- this will be filled in by javascript when there are results -->
+				</tbody>
+				<tfoot>
+					<td colspan="3"><button class="wide_button" name="resubmit" id="resubmit" type="submit">refine search</button></td>
+				</tfoot>
+            </table>
+		</form>
+    </section>
+
+	<div id="output">
+		<nav class="standard_section" id="user_input">
+			<form name="customize_output" id="customize_output" action="">
+				<h2>Customize</h2>
+				
+				<label for="before_context">Before Gene Context
+				<span class="small">Assembly before gene</span></label>
+				<input name="before_context" id="before_context" type="number" value="" placeholder="100" min="0" max="100000"/>
+				
+				<label for="after_context">After Gene Context
+				<span class="small">Assembly after gene</span></label>
+				<input name="after_context" id="after_context" type="number" value="" placeholder="100" min="0" max="100000"/>
+				
+				<label for="five_prime_length">5' Primer Length
+				<span class="small">Best between 20 and 40</span></label>
+				<input name="five_prime_length" id="five_prime_length" type="number" value="" placeholder="24" min="15" max="50"/>
+				
+				<label for="three_prime_length">3' Primer Length
+				<span class="small">Best between 20 and 40</span></label>
+				<input name="three_prime_length" id="three_prime_length" type="number" value="" placeholder="24" min="15" max="50"/>
+				
+				<label for="five_prime_start">5' Primer Start
+				<span class="small">Absolute position</span></label>
+				<input name="five_prime_start" id="five_prime_start" type="number" value="" placeholder="0"/>
+
+				
+				<label for="three_prime_start">3' Primer Start
+				<span class="small">Absolute position</span></label>
+				<input name="three_prime_start" id="three_prime_start" type="number" value="" placeholder="0"/>
+				
+				<button name="customize" id="customize" class="wide_button" type="submit">customize</button>
+			</form>
+			
+			<h2 class="second_heading">Key</h2>
+			<article class="white_bg">
+				<p><span class="amplified">AMPLIFIED</span></p>
+				<p><span class="five_prime">FIVE PRIME PRIMER</span></p>
+				<p><span class="three_prime">THREE PRIME PRIMER</span></p>
+				<p><span class="before">BEFORE AND AFTER GENE CONTEXT</span></p>
+				<p><span class="gene">GENE OF INTEREST</span></p>
+			</article>
+		</nav>
+
+		<section class="standard_section" id="gene_selected">
+			<div id="data_div" data-before_context=100 data-after_context=100 data-five_prime_length=24 data-three_prime_length=24></div>
+			<h2>Gene of Interest</h2>
+			<table>
+				<thead>
+					<tr>
+						<td>Locus tag</td>
+						<td>Product</td>
+						<td>Start Position</td>
+						<td>End Position</td>
+						<td>Strand</td>
+						<td>Organism</td>
+					</tr>
+				</thead>
+				<tbody id="gene_tbody">
+					<!-- this will be filled in by javascript when there are results -->
+				</tbody>
+			</table>
+			
+			<table>
+				<thead>
+					<tr>
+						<td>Sequence</td>
+					</tr>
+				</thead>
+				<tbody id="sequence_tbody">
+					<!-- this will be filled in by javascript when there are results -->
+				</tbody>
+			</table>
+		</section>
+	</div>
+	
+	<section id="primers" class="standard_section">
+		<h2>Primers</h2>
+		<article class="white_bg" id="five_prime">
+			<p>5' Primer</p>
+			<textarea id="five_prime_primer"></textarea>
+			<p id="five_prime_analysis"></p>
+		</article>
+		<article class="white_bg" id="three_prime">
+			<p>3' Primer</p>
+			<textarea id="three_prime_primer"></textarea>
+			<p id="three_prime_analysis"></p>
+		</article>
+		<form name="analyze_primers" id="analyze_primers" action="">
+			<button name="analyze" id="analyze" class="wide_button" type="submit">analyze primers</button>
+		</form>
+	</section>
+
+	
+	<section id="how_to" class="standard_section">
+		<h2>Auto Primer Documentation</h2>
+		<article class="white_bg">
+			<p class="small_heading">Quick Guide</p>
+			<ol>
+				<li>Type a gene product term into the search box and press the 'search' button.</li>
+				<li>From the results select a single product and press the 'refine search' button.</li>
+				<li>Alter primers as desired using the customize section and press the 'customize' button.</li>
+				<li>Check primers for non-specific binding by pressing the 'analyze primers' button.</li>
+				<li>Copy primers from the primers section and order; that's it.</li>
+			</ol>
+		</article>
+		<article class="white_bg">
+			<p class="small_heading">Auto Primer</p>
+			<p>Auto Primer
+			<p>Auto Primer assists in the selection of primers for molecular cloning. After the user selects a target, Auto Primer automatically designs the 5' and 3' primers to target the beginning and end of the gene. The amplified region will be high-lighted to clearly denote the amplicon.</p>
+
+			<p>Beyond automatically targeting the gene, the primers are fully customizable to allow moving them up and downstream of the gene to amplify the surrounding context. The amount of context shown can also be increased in case the user needs to amplify promoter regions or other important features outside of the gene context. Additionally, primers may be lengthened or shortened as desired.</p>
+
+			<p>Once the desired positions and lengths have been set by the user, the primers will be printed out in 5' to 3' format in a text box for easy copying. At this point the user can also elect to check the primers for specificity by analyzing the primers. Primers that are too short may risk multiple binding sites and should be avoided.</p>
+		</article>
+		<article class="white_bg">
+			<p class="small_heading">To Begin</p>
+			<p>Start typing a gene product into the search box. Auto Primer will autocomplete your query to fill the field. Press the 'search' button to retrieve hits for that protein product from the database.</p>
+
+			<p>The search results will be displayed in a table. Each row will have a radio button in the first column. Selecting one of the radio buttons and pressing 'refine search' will bring up the genomic DNA sequence for that specific product.</p>
+		</article>
+		<article class="white_bg">
+			<p class="small_heading">Gene Display</p>
+			<p>Genes may be present on either strand of the genomic sequence, viewing just the raw genomic sequence would cause genes present on the -1 strand to appear backwards. Auto Primer automatically takes genes from the -1 strand and produces a reverse complement before displaying. In the Gene of Interest section, the gene will be displayed as double stranded sequence showing both the coding strand and the complementary strand. Due to Auto Primer's correction for the -1 strand, the coding strand is always the top strand and the complementary strand is always the bottom strand. This should dramatically reduce directional confusion for those new to PCR.</p>
+
+			<p>The context before and after the gene will also be displayed. These sequences are presented in light gray to indicate they are not part of the gene. However, many users may find it useful to amplify regions outside of the gene context, e.g. promoter region and TATA box.</p>
+		</article>
+		<article class="white_bg">
+			<p class="small_heading">Amplicon</p>
+			<p>Primers will automatically be selected and marked on the DNA using red and green high-lighting. Any region between the primers will also be high-lighted yellow to indicate it is part of the amplicon. If no customization is necessary, the user may elect to just analyze the primers for specificity. If no warnings arise, then the primers are ready for purchasing and may easily be copied out with 5' and 3' annotation already attached.</p>
+
+			<p>If warnings arise, or further customization is desired, simply alter the gene context, primer length, and primer start positions using the Customization form. Be aware that the 3' primer start position is actually the position where it appears to end. This is because DNA is always considered in the 5' to 3' direction. If it helps, think of the 5' and 3' primer start positions as the positions where amplification stops.</p>
+
+			<p>Lengthening a primer is the best way to improve its specificity without having to change the amplicon. If the primer analysis indicates that non-specific binding will occur, consider lengthening that primer. Avoid unnecessarily long primers. Primers that are too long will cost more and take longer to anneal without any benefit to amplification.</p>
+
+			<p>Note that the end of the 5' or 3' primer is not allowed to overlap the start of the 3' or 5' primer, respectively. The start of the 5' or 3' primer is also not allowed to be downstream or upstream from the end of the 3' or 5' primer end, respectively. In effect, this prevents the 3' primer from ever being upstream of the 5' primer which would cause the PCR to fail.</p>
+		
+			<p>Note that amplicons longer than 2kb may be difficult to amplify using standard PCR. In the event that a longer amplicon is necessary consider purchasing a Phusion polymerase based PCR kit.</p>
+		</article>
+		<article class="white_bg">
+			<p class="small_heading">Primer Analysis</p>
+			<p>Once the desired amplicon has been selected through customization or automation, the primers should be checked for specificity. In the Primers section press the 'analyze primers' button to run a database search for non-specific binding sites. If the primer is unique it will be marked successful. If the primer has additional binding sites it will be marked with a warning.</p>
+		</article>
+	</section>
+	
+</div>
+</body>
+
+</html>

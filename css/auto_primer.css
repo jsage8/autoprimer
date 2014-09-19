@@ -1,0 +1,283 @@
+body {
+    font: small 'Lucida Grande', Verdana, Arial, sans-serif;
+}
+
+/* Begin all_content div
+ * 	Wraps all content and centers it on the page
+ */
+div#all_content {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+/* Begin standard styling */
+	.standard_section {
+		padding: 10px;
+		margin: 10px;
+		background: #ebf4fb;
+		border:2px solid #b7ddf2;
+		border-radius: 15px;
+		-moz-border-radius: 15px;
+		-webkit-border-radius: 15px;
+	}
+	
+	.white_bg {
+		background: #FFFFFF;
+		border: 1px solid #C8C8C8;
+		padding: 10px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+/* End standard section styling */
+
+
+/* Begin search section styling */
+	form#gene_search {
+		display: block;
+		float: right;
+		margin-top: -35px;
+	}
+	
+	section#search_box input {
+		height: 33px;
+		padding: 0px 4px 0px 4px;
+		width:500px;
+		margin: 0px;
+	}
+/* End search section styling */
+
+/* Begin results section styling */ 
+	section#results .radio {
+		text-align: center;
+	}
+/* End results section styling */
+
+/* Begin output div styling
+ * 	Contains: 
+ * 		user_input
+ * 		gene_selected
+ */
+	div#output {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		width: 100%;
+	}
+
+	/* Being user_input nav styling */
+		nav#user_input {
+			width: 275px;
+			margin: 0px 5px 0px 10px;
+		}
+
+		nav#user_input label {
+			display: block;
+			font-weight: bold;
+			text-align: right;
+			width: 145px;
+			float: left;
+			padding: 0px;
+			margin: 0px;
+		}
+
+		nav#user_input input {
+			float: left;
+			padding: 4px 2px;
+			border: 1px solid #aacfe4;
+			width:70px;
+			margin: 2px 0px 20px 10px;
+		}
+
+		nav#user_input button {
+			clear: both;
+		}
+
+		nav#user_input .small {
+			color:#666666;
+			display:block;
+			font-size:10px;
+			font-weight:normal;
+			text-align:right;
+			width:145px;
+		}
+	/* End user_input nav styling */
+
+	/* Begin gene_selected section styling */
+		section#gene_selected {
+			-webkit-box-flex: 1;
+			-moz-box-flex: 1;
+			-webkit-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+			margin: 0px 10px 0px 5px;
+		}
+
+		tbody#sequence_tbody td {
+			padding: 10px;
+		}
+
+		section#gene_selected p {
+			font-family: "Courier New", Courier, monospace;
+			padding: 0px;
+			margin: 0px;
+		}
+
+
+	/* End gene_selected section styling */
+/* End output div styling */
+
+/* Begin primers section styling */
+	article#five_prime, article#three_prime {
+		padding: 10px 15px 10px 10px;
+	}
+
+	section#primers textarea {
+		font-family: "Courier New", Courier, monospace;
+		border: 1px solid #aacfe4;
+		width:100%;
+		height: 100px;
+		word-wrap:break-word;
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+	
+	article#five_prime p, article#three_prime p {
+		padding: 0px;
+		margin: 0px;
+		font-size: 125%;
+		font-weight: bold;
+	}
+/* End primers section styling */
+
+/* Begin Button Styling */
+	.wide_button {
+		width: 100%;
+		line-height: 50px;
+	}
+
+	button {
+		text-align: center;
+		font-weight: bold;
+		display: inline-block;
+		text-decoration: none;
+		padding: .5em 2em .55em;
+		text-shadow: 0 1px 1px rgba(0,0,0,.3);
+		-webkit-border-radius: 5px; 
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		color: #FEF4E9;
+		border: solid 1px #DA7C0C;
+		background: #F78D1D;
+		background: -webkit-gradient(linear, left top, left bottom, from(#FAA51A), to(#F47A20));
+		background: -moz-linear-gradient(top,  #FAA51A,  #F47A20);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAA51A', endColorstr='#F47A20');
+	}
+
+	button:hover {
+		background: -webkit-gradient(linear, left top, left bottom, from(#FFC125), to(#F47A20));
+		background: -moz-linear-gradient(top,  #FFC125,  #F47A20);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFC125', endColorstr='#F47A20');
+	}
+
+	button:active {
+		color: #FCD3A5;
+		background: -webkit-gradient(linear, left top, left bottom, from(#F47A20), to(#faa51a));
+		background: -moz-linear-gradient(top,  #F47A20,  #FAA51A);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F47A20', endColorstr='#FAA51A');
+	}
+/* End Button Styling */
+
+/* Begin Table Styling */
+	table {
+		border-collapse: collapse;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		background: #FFFFFF;
+	}
+
+	table thead td {
+		font-weight: bold;
+	}
+
+	table td {
+		border: 1px solid #C8C8C8;
+		padding: 2px 10px;
+	}
+/* End Table Styling */
+
+/* Begin Text Styling */
+	h1 {
+		font-size: 400%;
+		font-weight: bold;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		margin-top: 25px;
+		margin-bottom: 25px;
+		margin-left: 100px;
+	}
+
+	h2 {
+		font-size: 150%;
+		font-weight: bold;
+		padding-top: 0px;
+		margin-top: 0px;
+	}
+	
+	.second_heading {
+		margin-top: 20px;
+	}
+	
+	.small_heading {
+		font-weight: bold;
+		font-size: 125%;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	
+	.before, .after {
+		color: #CCCCCC;
+	}
+	
+	.gene {
+		color: #000000;
+	}
+	
+	.amplified {
+		background: #FFFF00;
+	}
+	
+	.five_prime {
+		background: #00FF00;
+	}
+	
+	.three_prime {
+		background: #FF0000;
+	}
+	
+	.success {
+		color: #266A2E;
+	}
+	
+	.fail {
+		color: #FF0000;
+	}
+/* End Text Styling */	
+
+/* Begin List Styling */	
+	ol {
+		padding-left: 20px;
+		font-weight: bold;
+	}
+	
+	li {
+		padding-bottom: 10px;
+	}
+/* End List Styling */
