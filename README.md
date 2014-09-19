@@ -69,6 +69,13 @@ Active URL:
 	
 Other Dependencies:
 	None
+	
+************************************************************************
+* RECONSTITUTE THIS PROJECT
+
+This project uses a LAMP stack and therefore requires some setup to 
+reconstitute. The project requires that you have installed Apache Server
+2.0, MySQL Server, and Perl. 
 
 ************************************************************************
 * QUICK GUIDE
