@@ -75,7 +75,41 @@ Other Dependencies:
 
 This project uses a LAMP stack and therefore requires some setup to 
 reconstitute. The project requires that you have installed Apache Server
-2.0, MySQL Server, and Perl. 
+2.0, MySQL Server, and Perl.
+
+Once the stack has been established, create a MySQL database with an
+appropriate name. Open mysql at the terminal and use the database you 
+created
+
+	mysql> use your_database_name;
+
+Build an empty Chado MySQL schema using chadodemo.sql
+
+	mysql> source /path/to/chadodemo.sql
+
+Download the genbank file for escherichia coli str. K12 substr. DH10B.
+
+	http://www.ncbi.nlm.nih.gov/nuccore/CP000948.1
+
+Load the genebank file into the Chado schema.
+
+	load_gbk.pl -i /path/to/e_coli_k12_dh10b.gbk -d your_database_name -u your_mysql_username
+	load_genomic.pl -i /path/to/e_coli_k12_dh10b.gbk -d your_database_name -u your_mysql_username
+
+Create a settings.ini file for accessing the database from localhost.
+Ideally your Apache server should be configured to hide .ini files so
+that your user information is private. Here's an example .ini file:
+
+	[database]
+	server = localhost
+	name = your_database_name
+	user = your_mysql_username
+	pass = password
+	
+Copy the css and js directories to an appropriate directory on the
+Apache server. Copy auto_primer.cgi and auto_primer.html to that same
+directory. Configure your Apache server to run .cgi scripts outside the
+cgi-bin or edit the pathing information as necessary.
 
 ************************************************************************
 * QUICK GUIDE
